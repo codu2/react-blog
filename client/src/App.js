@@ -1,14 +1,28 @@
-import TopBar from "./components/topbar/TopBar";
+import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/home/Home";
 import Single from "./pages/single/Single";
+import Write from "./pages/write/Write";
+import Settings from "./pages/settings/Settings";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import TopBar from "./components/topbar/TopBar";
 
 function App() {
+  const user = false;
+
   return (
-    <>
-      <TopBar />
-      <Home />
-      <Single />
-    </>
+    <Routes>
+      <Route element={<TopBar />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<Home />} />
+        <Route path="/register" element={user ? <Home /> : <Register />} />
+        <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Route path="/post/:id" element={<Single />} />
+        <Route path="/write" element={user ? <Write /> : <Login />} />
+        <Route path="/settings" element={user ? <Settings /> : <Login />} />
+      </Route>
+    </Routes>
   );
 }
 
