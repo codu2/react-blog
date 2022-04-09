@@ -30,7 +30,7 @@ const TopBar = () => {
       <div className={styles["top-right"]}>
         <img
           className={styles["top-img"]}
-          src={`https://images.unsplash.com/photo-1615751072497-5f5169febe17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80`}
+          src={`https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80`}
           alt=""
         />
         <AiOutlineSearch className={styles["top-search-icon"]} />
