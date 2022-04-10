@@ -57,3 +57,8 @@
   word-break: break-all;
   text-align: justify;
 }
+
+.link {
+  color: #333;
+  text-decoration: none;
+}

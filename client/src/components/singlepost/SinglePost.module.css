@@ -14,7 +14,7 @@
 }
 
 .single-post-title {
-  margin: 10px;
+  margin: 15px 10px;
   font-size: 26px;
   display: grid;
   font-weight: 600;
@@ -50,6 +50,7 @@
 .single-post-author {
   margin-left: 5px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .single-post-date {
@@ -70,4 +71,9 @@
   font-size: 25px;
   font-weight: 600;
   color: #555;
+}
+
+.link {
+  color: #333;
+  text-decoration: none;
 }

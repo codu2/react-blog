@@ -1,31 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./Post.module.css";
 
-const Post = () => {
+const Post = ({ post }) => {
   return (
     <div className={styles.post}>
-      <img
-        className={styles["post-img"]}
-        src={`https://images.unsplash.com/photo-1508749797192-efdd22441d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80`}
-        alt=""
-      />
+      {post.photo && (
+        <img className={styles["post-img"]} src={post.photo} alt="" />
+      )}
       <div className={styles["post-info"]}>
         <div className={styles["post-cats"]}>
-          <span className={styles["post-cat"]}>Music</span>
-          <span className={styles["post-cat"]}>Life</span>
+          {post.categories.map((category, i) => (
+            <span className={styles["post-cat"]} key={i}>
+              {category}
+            </span>
+          ))}
         </div>
-        <span className={styles["post-title"]}>
-          Northeastpartyhouse Golden Hour
+        <Link to={`post/${post._id}`} className={styles.link}>
+          <span className={styles["post-title"]}>{post.title}</span>
+        </Link>
+        <span className={styles["post-date"]}>
+          {new Date(post.createAt).toDateString()}
         </span>
-        <span className={styles["post-date"]}>1 hour ago</span>
       </div>
-      <p className={styles["post-desc"]}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
-        fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
-        atque, exercitationem quibusdam, reiciendis odio laboriosam?
-      </p>
+      <p className={styles["post-desc"]}>{post.desc}</p>
     </div>
   );
 };
