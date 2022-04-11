@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
 
 import Home from "./pages/home/Home";
 import Single from "./pages/single/Single";
@@ -8,8 +9,10 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import TopBar from "./components/topbar/TopBar";
 
+import Context from "./context/Context";
+
 function App() {
-  const user = false;
+  const { user } = useContext(Context);
 
   return (
     <Routes>

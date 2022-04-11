@@ -67,3 +67,8 @@
   color: #fff;
   text-decoration: none;
 }
+
+.login-button:disabled {
+  cursor: not-allowed;
+  background-color: #666;
+}

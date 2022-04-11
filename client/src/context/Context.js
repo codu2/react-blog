@@ -7,6 +7,7 @@ const initialState = {
   loginStart: (userCredentials) => {},
   loginSuccess: (user) => {},
   loginFailure: () => {},
+  logout: () => {},
 };
 
 const Context = createContext(initialState);

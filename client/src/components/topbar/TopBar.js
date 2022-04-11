@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import styles from "./TopBar.module.css";
@@ -10,8 +10,14 @@ import {
 } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 
+import Context from "../../context/Context";
+
 const TopBar = () => {
-  const user = false;
+  const { user, logout } = useContext(Context);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <>
@@ -36,16 +42,16 @@ const TopBar = () => {
                 WRITE
               </Link>
             </li>
-            {user && <li className={styles["top-list-item"]}>LOGOUT</li>}
+            {user && (
+              <li className={styles["top-list-item"]} onClick={handleLogout}>
+                LOGOUT
+              </li>
+            )}
           </ul>
         </div>
         <div className={styles["top-right"]}>
           {user ? (
-            <img
-              className={styles["top-img"]}
-              src={`https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80`}
-              alt=""
-            />
+            <img className={styles["top-img"]} src={user.profilePic} alt="" />
           ) : (
             <ul className={styles["top-list"]}>
               <li className={styles["top-list-item"]}>

@@ -1,8 +1,8 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import Context from "./Context";
 
 const initialState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   isFetching: false,
   error: false,
 };
@@ -27,6 +27,12 @@ const Reducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+    case "LOGOUT":
+      return {
+        user: null,
+        isFetching: false,
+        error: false,
+      };
     default:
       return state;
   }
@@ -47,6 +53,14 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: "LOGIN_FAILURE" });
   };
 
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state.user));
+  }, [state.user]);
+
   const contextValue = {
     user: state.user,
     isFetching: state.isFetching,
@@ -54,6 +68,7 @@ const ContextProvider = ({ children }) => {
     loginStart,
     loginSuccess,
     loginFailure,
+    logout,
   };
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };

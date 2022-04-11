@@ -16,9 +16,9 @@ const Login = () => {
 
     ctx.loginStart();
     try {
-      const res = await axios.post("/auth/login", {
-        username,
-        password,
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        username: username,
+        password: password,
       });
       ctx.loginSuccess(res.data);
     } catch (err) {
@@ -44,7 +44,11 @@ const Login = () => {
           className={styles["login-input"]}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className={styles["login-button"]} type="submit">
+        <button
+          className={styles["login-button"]}
+          type="submit"
+          disabled={ctx.isFetching}
+        >
           Login
         </button>
       </form>
