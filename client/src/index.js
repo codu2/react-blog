@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 
 import { BrowserRouter } from "react-router-dom";
+import ContextProvider from "./context/ContextProvider";
 
 /*
 ReactDOM.render(
@@ -17,6 +18,8 @@ ReactDOM.render(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App />
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </BrowserRouter>
 );
