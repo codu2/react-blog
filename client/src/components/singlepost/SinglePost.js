@@ -10,6 +10,8 @@ const SinglePost = () => {
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
 
+  const publicFolder = "http://localhost:5000/images/";
+
   useEffect(() => {
     const fetchPost = async () => {
       const res = await axios.get("http://localhost:5000/api/posts/" + path);
@@ -22,7 +24,11 @@ const SinglePost = () => {
     <div className={styles["single-post"]}>
       <div className={styles["single-post-wrapper"]}>
         {post.photo && (
-          <img src={post.photo} alt="" className={styles["single-post-img"]} />
+          <img
+            src={publicFolder + post.photo}
+            alt=""
+            className={styles["single-post-img"]}
+          />
         )}
         <h1 className={styles["single-post-title"]}>
           {post.title}
@@ -41,7 +47,7 @@ const SinglePost = () => {
             </Link>
           </span>
           <span className={styles["single-post-date"]}>
-            {new Date(post.createAt).toDateString()}
+            {new Date(post.createdAt).toDateString()}
           </span>
         </div>
         <p className={styles["single-post-desc"]}>{post.desc}</p>

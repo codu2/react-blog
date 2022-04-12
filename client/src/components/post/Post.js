@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 import styles from "./Post.module.css";
 
 const Post = ({ post }) => {
+  const publicFolder = "http://localhost:5000/images/";
+
   return (
     <div className={styles.post}>
       {post.photo && (
-        <img className={styles["post-img"]} src={post.photo} alt="" />
+        <img
+          className={styles["post-img"]}
+          src={publicFolder + post.photo}
+          alt=""
+        />
       )}
       <div className={styles["post-info"]}>
         <div className={styles["post-cats"]}>
@@ -21,7 +27,7 @@ const Post = ({ post }) => {
           <span className={styles["post-title"]}>{post.title}</span>
         </Link>
         <span className={styles["post-date"]}>
-          {new Date(post.createAt).toDateString()}
+          {new Date(post.createdAt).toDateString()}
         </span>
       </div>
       <p className={styles["post-desc"]}>{post.desc}</p>
