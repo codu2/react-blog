@@ -4,6 +4,8 @@
 
 .single-post-wrapper {
   padding: 20px 0 20px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .single-post-img {
@@ -23,6 +25,17 @@
   text-align: center;
 }
 
+.single-post-title-input {
+  margin: 15px 10px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #333;
+  font-size: 22px;
+  text-align: start;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
 .single-post-edit {
   font-size: 18px;
   text-align: end;
@@ -35,6 +48,7 @@
 
 .single-post-icon:first-child {
   color: #333;
+  font-size: 17px;
 }
 
 .single-post-icon:last-child {
@@ -73,7 +87,32 @@
   color: #555;
 }
 
+.single-post-desc-input {
+  line-height: 25px;
+  min-height: 300px;
+  font-size: 16px;
+  outline: none;
+}
+
 .link {
   color: #333;
   text-decoration: none;
+}
+
+.single-post-button {
+  width: 150px;
+  align-self: flex-end;
+  margin-top: 15px;
+  outline: none;
+  border: none;
+  color: #fff;
+  padding: 10px 0;
+  border-radius: 5px;
+  background-color: #333;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+}
+
+.single-post-button:hover {
+  background-color: #000;
 }
