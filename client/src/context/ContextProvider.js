@@ -33,6 +33,24 @@ const Reducer = (state, action) => {
         isFetching: false,
         error: false,
       };
+    case "UPDATE_START":
+      return {
+        user: state.user,
+        isFetching: true,
+        error: false,
+      };
+    case "UPDATE_SUCCESS":
+      return {
+        user: action.payload,
+        isFetching: false,
+        error: false,
+      };
+    case "UPDATE_FAILURE":
+      return {
+        user: state.user,
+        isFetching: false,
+        error: true,
+      };
     default:
       return state;
   }
@@ -57,6 +75,18 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: "LOGOUT" });
   };
 
+  const updateStart = (userCredentials) => {
+    dispatch({ type: "UPDATE_START" });
+  };
+
+  const updateSuccess = (user) => {
+    dispatch({ type: "UPDATE_SUCCESS", payload: user });
+  };
+
+  const updateFailure = () => {
+    dispatch({ type: "UPDATE_FAILURE" });
+  };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
   }, [state.user]);
@@ -69,6 +99,9 @@ const ContextProvider = ({ children }) => {
     loginSuccess,
     loginFailure,
     logout,
+    updateStart,
+    updateSuccess,
+    updateFailure,
   };
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };

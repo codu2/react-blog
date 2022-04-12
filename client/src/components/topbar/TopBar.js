@@ -15,6 +15,8 @@ import Context from "../../context/Context";
 const TopBar = () => {
   const { user, logout } = useContext(Context);
 
+  const publicFolder = "http://localhost:5000/images/";
+
   const handleLogout = () => {
     logout();
   };
@@ -51,7 +53,19 @@ const TopBar = () => {
         </div>
         <div className={styles["top-right"]}>
           {user ? (
-            <img className={styles["top-img"]} src={user.profilePic} alt="" />
+            <Link to="/settings">
+              {user.profilePic ? (
+                <img
+                  className={styles["top-img"]}
+                  src={publicFolder + user.profilePic}
+                  alt=""
+                />
+              ) : (
+                <span className={styles["top-img-null"]}>
+                  {user.username.charAt(0)}
+                </span>
+              )}
+            </Link>
           ) : (
             <ul className={styles["top-list"]}>
               <li className={styles["top-list-item"]}>
