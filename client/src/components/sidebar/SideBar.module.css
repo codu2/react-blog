@@ -76,3 +76,11 @@
   color: #333;
   text-decoration: none;
 }
+
+/*responsive*/
+
+@media screen and (max-width: 760px) {
+  .sidebar {
+    display: none;
+  }
+}

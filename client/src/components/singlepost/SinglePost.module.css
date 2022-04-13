@@ -116,3 +116,9 @@
 .single-post-button:hover {
   background-color: #000;
 }
+
+@media screen and (max-width: 760px) {
+  .single-post {
+    padding: 20px;
+  }
+}

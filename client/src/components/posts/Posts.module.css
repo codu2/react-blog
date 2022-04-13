@@ -4,3 +4,12 @@
   flex-wrap: wrap;
   margin: 20px;
 }
+
+/*responsive*/
+
+@media screen and (max-width: 1024px) {
+  .posts {
+    flex-direction: column;
+    align-items: center;
+  }
+}
