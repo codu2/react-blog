@@ -21,6 +21,8 @@ const Login = () => {
         password: password,
       });
       ctx.loginSuccess(res.data);
+      window.location.replace("/");
+      //window.location.replace를 안해주면 /login이 그대로 남아 다른 경로에 영향을 미침
     } catch (err) {
       ctx.loginFailure();
     }
