@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import styles from "./Write.module.css";
@@ -11,6 +11,38 @@ const Write = () => {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const [cats, setCats] = useState([]);
+  const [category, setCategory] = useState({
+    life: false,
+    music: false,
+    sport: false,
+    style: false,
+    tech: false,
+    cinema: false,
+  });
+  const [selectedCats, setSelectedCats] = useState([]);
+
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("http://localhost:5000/api/categories");
+      setCats(res.data);
+    };
+    getCats();
+  }, []);
+
+  const handleCategory = (e) => {
+    setCategory({ ...category, [e.target.value]: e.target.checked });
+    if (e.target.checked === false) {
+      for (let i = 0; i < selectedCats.length; i++) {
+        if (selectedCats[i] === e.target.value) {
+          selectedCats.splice(i, 1);
+          i--;
+        }
+      }
+    } else if (e.target.checked === true) {
+      setSelectedCats([...selectedCats, e.target.value]);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +51,7 @@ const Write = () => {
       title,
       desc,
       username: user.username,
+      categories: selectedCats,
     };
 
     if (file) {
@@ -65,6 +98,21 @@ const Write = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+        <ul className={styles["write-category"]}>
+          {cats.map((cat) => (
+            <li className={styles["write-category-item"]} key={cat._id}>
+              <input
+                type="checkbox"
+                name="category"
+                value={cat.name}
+                id={cat.name}
+                onChange={handleCategory}
+              />
+              <label htmlFor={cat.name}></label>
+              <span>{cat.name}</span>
+            </li>
+          ))}
+        </ul>
         <div className={styles["write-form-group"]}>
           <textarea
             placeholder="Tell your story..."

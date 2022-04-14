@@ -20,6 +20,7 @@ const TopBar = () => {
 
   const handleLogout = () => {
     logout();
+    window.location.replace("/");
   };
 
   const [users, setUsers] = useState([]);
@@ -133,7 +134,13 @@ const TopBar = () => {
                           key={user._id}
                           className={styles.link}
                         >
-                          <li className={styles["search-result-list-item"]}>
+                          <li
+                            className={styles["search-result-list-item"]}
+                            onClick={() => {
+                              setSearchTerm("");
+                              setSearchInput(false);
+                            }}
+                          >
                             {user.username}
                           </li>
                         </Link>
@@ -156,7 +163,13 @@ const TopBar = () => {
                           key={post._id}
                           className={styles.link}
                         >
-                          <li className={styles["search-result-list-item"]}>
+                          <li
+                            className={styles["search-result-list-item"]}
+                            onClick={() => {
+                              setSearchTerm("");
+                              setSearchInput(false);
+                            }}
+                          >
                             {post.title}
                           </li>
                         </Link>
